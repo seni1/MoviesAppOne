@@ -6,17 +6,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ViewHolder> {
 
-    private final ArrayList<Model> modelList;
-    private ArrayList <Model> mModel;
+    private final ArrayList<Images> modelList;
+    private Context context;
 
-    public ModelAdapter(ArrayList<Model> modelList) {
-
+    public ModelAdapter(Context applicationContext, ArrayList<Images> modelList) {
+        this.context = context;
         this.modelList = modelList;
     }
 
@@ -29,9 +33,11 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Model model = modelList.get(position);
-        holder.name.setText(model.getName());
-        holder.number.setText(String.valueOf(model.getNumber()));
+        Images images = modelList.get(position);
+        holder.name.setText(images.getImages());
+//        holder.number.setText(String.valueOf(model.getNumber()));
+
+        Glide.with(context).load(images.getFields().getThumbnail()).into(holder.image);
 
     }
 
@@ -43,13 +49,17 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView name;
-        public TextView number;
+        public ImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.tv_name);
-            number = itemView.findViewById(R.id.tv_number);
+            image = itemView.findViewById(R.id.tv_image);
         }
+    }
+
+    public void setData(List<Images> list) {
+        modelList.addAll(list);
+        notifyDataSetChanged();
     }
 }

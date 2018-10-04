@@ -9,9 +9,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Model> modelArrayList;
+    private ArrayList<Images> modelArrayList;
+
+    public static final String KEY = "5571cb8edc0c8203b51ddfb985abd954";
+    public static final String IMAGE = "thumbnail";
+
     private RecyclerView recyclerView;
     private ModelAdapter adapter;
+//    private RecyclerView.LayoutManager layoutManager;
 
 
 
@@ -21,10 +26,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.model_list);
 
         recyclerView = findViewById(R.id.rv_model);
-        modelArrayList = Model.createMovieList();
-        adapter = new ModelAdapter(modelArrayList);
+        modelArrayList = new ArrayList<>();
+        adapter = new ModelAdapter(getApplicationContext(), modelArrayList);
+
         int numberOfColumns = 2;
+
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
+
         recyclerView.setAdapter(adapter);
+
+        getImages();
     }
+
+    private void getImages() {
+
+        App.getApi().getData()
+
+    }
+
+
 }

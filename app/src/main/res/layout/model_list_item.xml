@@ -11,20 +11,10 @@
         <!--android:layout_height="150dp"-->
         <!--android:src="@drawable/ic_launcher_background"/>-->
 
-    <TextView
-        android:id="@+id/tv_name"
+    <ImageView
+        android:id="@+id/tv_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Name"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/tv_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="8888888"
-        android:textSize="20sp"/>
+        android:padding="8dp"/>
 
 </LinearLayout>
